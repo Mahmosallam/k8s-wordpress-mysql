@@ -51,6 +51,7 @@ cd k8s-wordpress-mysql
 ```
 2. Deploy MySQL
 ```bash
+kubectl create ns mysql-db
 kubectl apply -f mysql/sc.yml
 kubectl apply -f mysql/pvc.yml
 kubectl apply -f mysql/secret.yml
@@ -64,6 +65,7 @@ kubectl apply -f mysql/svc.yml
 - ------------------------------------
 3. Deploy WordPress
 ```bash
+kubectl create ns wordpress-site
 kubectl apply -f wordpress/sc-wordpress.yml
 kubectl apply -f wordpress/pvc-wordpress.yml
 kubectl apply -f wordpress/secret-wp.yml
@@ -79,6 +81,7 @@ kubectl get sc
 kubectl get pv
 ```
 and it will be like:
+-----------------------
 <img width="1235" height="589" alt="Screenshot 2025-10-04 113835" src="https://github.com/user-attachments/assets/02427cd1-7aad-43ba-8fb1-70b097c612d5" />
 
 ## 🌐 Load Balancer & Target Group
@@ -96,12 +99,14 @@ and it will be like:
 - On Minikube, use minikube service wordpress-service --url to access WordPress.
 
 this is to verify my work:
+-----------------------------
 ![chrome_9XCcwEEdAe](https://github.com/user-attachments/assets/1c07fb57-47d0-4345-90ba-f4a3b671f0a3)
 and verify database is work:
+-----------------------------
 https://github.com/user-attachments/assets/442e4b92-9fef-4712-88ff-429c90656768
-
+``` bash
 and finally This project is for educational purposes. Feel free to fork and modify.
-
+```
 
 
 
