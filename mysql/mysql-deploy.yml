@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-app
+  namespace: mysql-db
+spec:
+  replicas: 1
+  selector: 
+     matchLabels:
+       env: db
+  template:
+    metadata:
+      labels:
+        env: db
+    spec:
+      containers:
+       - name: mysql
+         image: mysql:8.0
+         ports:
+          - containerPort: 3306
+         envFrom:
+           - secretRef:
+               name: mysql-secret
+         volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-my-sql
+

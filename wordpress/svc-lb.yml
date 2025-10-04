@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+  namespace: wordpress-site
+spec:
+  selector:
+    env: wp
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30007
+  type: LoadBalancer
