@@ -25,7 +25,8 @@ k8s-wordpress-mysql/
 ```
 ## 🏗️ Architecture
 -----------------------
-- **MySQL** runs inside the cluster with its own PVC for data persistence.  
+- **MySQL** runs inside the cluster with its own PVC for data persistence.
+- csi driver for EBS and EFS 
 - **WordPress** connects to MySQL using credentials stored in a Secret.  
 - **WordPress** is exposed externally using a `LoadBalancer` service.  
 - **StorageClasses** are provided to dynamically provision storage for both MySQL and WordPress.  
@@ -96,6 +97,7 @@ and it will be like:
 ---------------
 - Use Namespaces (wordpress-site and mysql-db) to organize resources.
 - Update Secrets to use your own database credentials.
+- Dont forget csi drivers
 - On Minikube, use minikube service wordpress-service --url to access WordPress.
 
 this is to verify my work:
